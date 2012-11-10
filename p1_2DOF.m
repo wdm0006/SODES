@@ -64,7 +64,16 @@ eq2 = subs(EqII,slist,nlist);
 sole = solve(eq1,eq2,'ddq1, ddq2');
 ddq1s = sole.ddq1;
 ddq2s = sole.ddq2;
-options= odeset('RelTol',1e-3,'MaxStep',1e-3);
-statenames={'omega 1', 'theta 1', 'v', 'r'};
-stateunits={'radians/sec', 'radians', 'meters/sec', 'meter'};
-sodes({ddq1s,ddq2s},'x',0,5,[0.001,0,0.001,0], 'Integrator', 'ode45', 'Terminal', 'ON', 'Plotting', 'ON', 'StateNames', statenames, 'StateUnits', stateunits,'Options',options);
+
+tic;
+[t xs]=sodes({ddq1s,ddq2s},'x',0,10,[0.001,0,0.001,0], 'Integrator', 'ode45', 'TimeStep', 0.001,'Plotting', 'ON');
+save('out.mat', 'xs');
+toc;
+
+tic;
+[t xs]=sodes({ddq1s,ddq2s},'x',0,10,[0.001,0,0.001,0], 'Integrator', 'mexRKF2', 'TimeStep', 0.001,'Plotting', 'ON');
+toc;
+
+tic;
+[t xs]=sodes({ddq1s,ddq2s},'x',0,10,[0.001,0,0.001,0], 'Integrator', 'mexRKF4', 'TimeStep', 0.001,'Plotting', 'ON');
+toc;
