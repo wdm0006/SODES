@@ -43,35 +43,62 @@ Inputs
 Current Math Limitations:
 
 Not all math will convert right at this time.  The main source of problems centers around the differences in how C and MATLAB handle exponentials.  C uses ^ as the bitwise XOR operator, MATLAB as pow.  To get around this, there is some code to find any ^'s in the MATLAB code, and back track to find the clause that it is raising to whatever power. Right now the code will not convert correctly if:
--Anything is raised to a power that isnt -1<x<10 (one digit only)
--Any function (abs(x)^2, inv(x)^2, ect.) with the exception of:
--sin
--cos
--tan
--sec
--csc
--cot
--asin
--acos
--atan
--asec
--acsc
--acot
--sinh
--cosh
--tanh
--sech
--csch
--coth
--asinh
--acosh
--atanh
--asech
--acsch
--acoth
--exp
--log
--sqrt
+Anything is raised to a power that isnt -1<x<10 (one digit only)
+Any function (abs(x)^2, inv(x)^2, ect.) with the exception of:
+
+*sin
+
+*cos
+
+*tan
+
+*sec
+
+*csc
+
+*cot
+
+*asin
+
+*acos
+
+*atan
+
+*asec
+
+*acsc
+
+*acot
+
+*sinh
+
+*cosh
+
+*tanh
+
+*sech
+
+*csch
+
+*coth
+
+*asinh
+
+*acosh
+
+*atanh
+
+*asech
+
+*acsch
+
+*acoth
+
+*exp
+
+*log
+
+*sqrt
 
 Work will continue to account for more built in functions to becorrectly converted from MATLAB to C. 
 
